@@ -498,7 +498,7 @@ a { text-decoration: none; color: inherit; }
   .mobile-toggle { display: flex; }
   .mobile-toggle.active span { background: var(--text) !important; }
 
-  .hero { min-height: 100svh; }
+  .hero { height: 60vh; min-height: 400px; }
   .specialties-grid { grid-template-columns: 1fr; }
   .sol-hero { grid-column: span 1; }
   .metrics-grid { grid-template-columns: 1fr 1fr; }
