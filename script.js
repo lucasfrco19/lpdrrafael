@@ -270,66 +270,21 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // =========================================
-  // GALLERY REVEAL
+  // GALLERY SLIDER LOGIC
   // =========================================
-  document.querySelectorAll('.gallery-item').forEach((item, i) => {
-    gsap.from(item, {
-      y: 50 + (i % 4) * 15,
-      opacity: 0,
-      duration: 0.7,
-      ease: 'power3.out',
-      scrollTrigger: { trigger: item, start: 'top 92%' }
+  const galleryTrack = document.getElementById('gallery-track');
+  const galleryNext = document.getElementById('gallery-next');
+  const galleryPrev = document.getElementById('gallery-prev');
+
+  if (galleryTrack && galleryNext && galleryPrev) {
+    const scrollAmount = () => galleryTrack.clientWidth;
+    galleryNext.addEventListener('click', () => {
+      galleryTrack.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
     });
-  });
-
-  // =========================================
-  // GALLERY LIGHTBOX
-  // =========================================
-  const galleryItems = document.querySelectorAll('.gallery-item');
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightbox-img');
-  const lightboxClose = document.getElementById('lightbox-close');
-  const lightboxPrev = document.getElementById('lightbox-prev');
-  const lightboxNext = document.getElementById('lightbox-next');
-  let currentIndex = 0;
-
-  const gallerySources = Array.from(galleryItems).map(item => item.querySelector('img').src);
-
-  const openLightbox = (index) => {
-    currentIndex = index;
-    lightboxImg.src = gallerySources[currentIndex];
-    lightbox.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  };
-  const closeLightbox = () => {
-    lightbox.classList.remove('active');
-    document.body.style.overflow = '';
-  };
-  const navigateLightbox = (dir) => {
-    currentIndex += dir;
-    if (currentIndex < 0) currentIndex = gallerySources.length - 1;
-    if (currentIndex >= gallerySources.length) currentIndex = 0;
-    lightboxImg.style.opacity = 0;
-    lightboxImg.style.transform = dir > 0 ? 'translateX(30px)' : 'translateX(-30px)';
-    setTimeout(() => {
-      lightboxImg.src = gallerySources[currentIndex];
-      lightboxImg.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
-      lightboxImg.style.opacity = 1;
-      lightboxImg.style.transform = 'translateX(0)';
-    }, 120);
-  };
-
-  galleryItems.forEach((item, idx) => item.addEventListener('click', () => openLightbox(idx)));
-  lightboxClose.addEventListener('click', closeLightbox);
-  lightboxPrev.addEventListener('click', () => navigateLightbox(-1));
-  lightboxNext.addEventListener('click', () => navigateLightbox(1));
-  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
-  document.addEventListener('keydown', (e) => {
-    if (!lightbox.classList.contains('active')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowLeft') navigateLightbox(-1);
-    if (e.key === 'ArrowRight') navigateLightbox(1);
-  });
+    galleryPrev.addEventListener('click', () => {
+      galleryTrack.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+    });
+  }
 
   // =========================================
   // CTA REVEAL
