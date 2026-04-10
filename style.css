@@ -305,7 +305,17 @@ a { text-decoration: none; color: inherit; }
   position: relative; width: 100%; height: 180px; overflow: hidden; border-bottom: 1px solid var(--border);
 }
 .sol-card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); }
-.sol-card-image-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.3), transparent); }
+.sol-card-image-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0.1)); }
+
+.sol-card-logo-overlay {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 110px; opacity: 0.85; z-index: 2;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+  transition: all 0.5s var(--ease);
+}
+.sol-card-logo-overlay img { width: 100%; height: auto; object-fit: contain; }
+.sol-card:hover .sol-card-logo-overlay { opacity: 1; transform: translate(-50%, -50%) scale(1.08); filter: drop-shadow(0 6px 15px rgba(0,0,0,0.7)); }
+
 .sol-card:hover .sol-card-image img { transform: scale(1.08); }
 
 .sol-card-content { padding: 2rem; position: relative; flex: 1; display: flex; flex-direction: column; }
@@ -316,7 +326,7 @@ a { text-decoration: none; color: inherit; }
   transition: opacity 0.5s; pointer-events: none;
 }
 
-.sol-hero { grid-column: span 1; grid-row: span 2; padding: 2.5rem; }
+
 
 .sol-icon {
   width: 56px; height: 56px; display: flex; align-items: center; justify-content: center;
@@ -493,7 +503,6 @@ a { text-decoration: none; color: inherit; }
 @media (max-width: 1024px) {
   .split-header { grid-template-columns: 1fr; }
   .specialties-grid { grid-template-columns: repeat(2, 1fr); }
-  .sol-hero { grid-column: span 2; grid-row: span 1; }
   .metrics-grid { grid-template-columns: repeat(2, 1fr); }
   .gallery-grid { grid-template-columns: repeat(3, 1fr); }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
@@ -518,7 +527,6 @@ a { text-decoration: none; color: inherit; }
 
   .hero { height: 60vh; min-height: 400px; }
   .specialties-grid { grid-template-columns: 1fr; }
-  .sol-hero { grid-column: span 1; }
   .metrics-grid { grid-template-columns: 1fr 1fr; }
   .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
   .step-connector { display: none; }
