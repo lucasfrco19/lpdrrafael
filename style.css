@@ -392,9 +392,6 @@ a { text-decoration: none; color: inherit; }
 .gallery { padding: 6rem 0 4rem; overflow: hidden; background: var(--bg); }
 .gallery-slider-container {
   position: relative; max-width: 650px; margin: 0 auto;
-  border-radius: var(--r); border: 1px solid var(--border);
-  background: var(--surface-2); padding: 8px;
-  box-shadow: 0 15px 40px rgba(var(--primary-rgb), 0.08);
 }
 .gallery-track {
   display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
