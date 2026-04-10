@@ -349,7 +349,7 @@ a { text-decoration: none; color: inherit; }
 .differentials::before {
   content: ''; position: absolute; inset: 0; z-index: -1;
   background: url('altima%20background.png') center/cover no-repeat;
-  opacity: 0.04; /* Regulate opacity */
+  opacity: 0.20; /* Increased opacity for visibility */
 }
 .process-timeline { max-width: 700px; margin: 0 auto; }
 .process-step { display: flex; gap: 1.5rem; }
